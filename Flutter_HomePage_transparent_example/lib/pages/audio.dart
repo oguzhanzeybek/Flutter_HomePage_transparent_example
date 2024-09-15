@@ -61,8 +61,8 @@ class _AudiopageState extends State<Audiopage> {
 
   @override
   Widget build(BuildContext context) {
-    Color primarycolor1 = const Color.fromARGB(255, 255, 6, 156);
-    Color primarycolor2 = const Color.fromARGB(255, 132, 255, 136);
+    Color primarycolor1 = const Color.fromARGB(255, 98, 98, 98);
+    Color primarycolor2 = const Color.fromARGB(255, 26, 26, 26);
     return Scaffold(
       drawer: Drawer(
         elevation: 3,
@@ -162,30 +162,138 @@ class _AudiopageState extends State<Audiopage> {
                 ),
               )
               .make(),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  formatduration(position),
+          ListView(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Image.asset("lib/image/image-7.jpg"),
+                    ),
+                    Slider(
+                      activeColor: Colors.black,
+                      autofocus: true,
+                      inactiveColor: Colors.white,
+                      thumbColor: Colors.white,
+                      min: 0.0,
+                      max: duration.inSeconds.toDouble(),
+                      value: position.inSeconds.toDouble(),
+                      onChanged: handleseek,
+                    ),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: (MainAxisAlignment.spaceBetween),
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 30),
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: formatduration(position),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(right: 30),
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: formatduration(duration),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      disabledColor: primarycolor2,
+                      color: Colors.black,
+                      highlightColor: Colors.white,
+                      splashColor: Colors.amber,
+                      hoverColor: Colors.amber,
+                      autofocus: true,
+                      focusColor: Colors.green,
+                      onPressed: handlePlayPause,
+                      icon:
+                          Icon(player.playing ? Icons.pause : Icons.play_arrow),
+                    ),
+                  ],
                 ),
-                Slider(
-                  min: 0.0,
-                  max: duration.inSeconds.toDouble(),
-                  value: position.inSeconds.toDouble(),
-                  onChanged: handleseek,
+              ),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Image.asset("lib/image/image-1.jpg"),
+                    ),
+                    Slider(
+                      activeColor: Colors.black,
+                      autofocus: true,
+                      inactiveColor: Colors.white,
+                      thumbColor: Colors.white,
+                      min: 0.0,
+                      max: duration.inSeconds.toDouble(),
+                      value: position.inSeconds.toDouble(),
+                      onChanged: handleseek,
+                    ),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: (MainAxisAlignment.spaceBetween),
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 30),
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: formatduration(position),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(right: 30),
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: formatduration(duration),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      disabledColor: primarycolor2,
+                      color: Colors.black,
+                      highlightColor: Colors.white,
+                      splashColor: Colors.amber,
+                      hoverColor: Colors.amber,
+                      autofocus: true,
+                      focusColor: Colors.green,
+                      onPressed: handlePlayPause,
+                      icon:
+                          Icon(player.playing ? Icons.pause : Icons.play_arrow),
+                    ),
+                  ],
                 ),
-                Text(
-                  formatduration(duration),
-                ),
-                IconButton(
-                  onPressed: handlePlayPause,
-                  icon: Icon(player.playing ? Icons.pause : Icons.play_arrow),
-                ),
-              ],
-            ),
-          )
+              )
+            ],
+          ),
         ],
       ),
     );
